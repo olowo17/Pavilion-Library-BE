@@ -2,7 +2,7 @@
 
 Backend repository for the **Library Management System** — built with **Spring Boot**, **Spring Data JPA**, and **RESTful APIs**.  
 This service provides endpoints for managing books, including adding, updating, deleting, and listing them.  
-It is designed to integrate seamlessly with the JavaFX frontend (`LibraryManagement-FE`).
+It is designed to integrate seamlessly with the JavaFX frontend (`Pavilion-Library-FE`).
 
 ---
 
@@ -27,6 +27,38 @@ It is designed to integrate seamlessly with the JavaFX frontend (`LibraryManagem
 
 ---
 
+## Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone <your-backend-repo-url>
+cd <backend-folder>
+
+## 2. Build and run the project
+
+mvn spring-boot:run
+The app will start at http://localhost:8080/api/books
+
+
+
+## Access to DB
+
+H2 is used as an in-memory database. To access the console:
+
+Open a browser and go to:
+http://localhost:8080/h2-console
+
+Use the following settings:
+
+JDBC URL: jdbc:h2:file:./data/librarydb
+
+Username: sa
+
+Password: (leave blank)
+
+Click Connect to view and query the database.
+
 ## 🧾 API Endpoints
 
 | Method | Endpoint | Description |
@@ -38,6 +70,7 @@ It is designed to integrate seamlessly with the JavaFX frontend (`LibraryManagem
 | `DELETE` | `/api/books/{id}` | Delete a book by ID |
 
 ---
+
 
 ## 🧠 Example JSON Request
 
