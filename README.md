@@ -29,9 +29,9 @@ It is designed to integrate seamlessly with the JavaFX frontend (`Pavilion-Libra
 
 ## Getting Started
 
+---
 ### 1. Clone the repository
 
-```bash
 git clone <your-backend-repo-url>
 cd <backend-folder>
 
