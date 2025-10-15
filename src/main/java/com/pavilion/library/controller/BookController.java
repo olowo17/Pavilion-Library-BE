@@ -31,7 +31,7 @@ public class BookController {
     public BookPageResponse getAllBooks(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
-        return service.getAllBooks(page, size); // assuming this already returns DTOs
+        return service.getAllBooks(page, size);
     }
 
     @PostMapping
