@@ -1,7 +1,11 @@
 package com.pavilion.library.service;
 
 
-import com.pavilion.library.BookPageResponse;
+import com.pavilion.library.util.BookMapper;
+import com.pavilion.library.dto.BookPageResponse;
+import com.pavilion.library.dto.BookRequestDto;
+import com.pavilion.library.dto.BookResponseDto;
+import com.pavilion.library.exception.BookNotFoundException;
 import com.pavilion.library.model.Book;
 import com.pavilion.library.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -18,39 +22,51 @@ public class BookService {
 
     private final BookRepository repo;
 
+    public BookResponseDto getBookById(Long id) {
+        Book book = repo.findById(id)
+                .orElseThrow(() -> new BookNotFoundException("Book not found with id " + id));
+        return BookMapper.toDto(book);
+    }
+
+    public BookResponseDto createBook(BookRequestDto dto) {
+        Book book = BookMapper.toEntity(dto);
+        Book saved = repo.save(book);
+        return BookMapper.toDto(saved);
+    }
+
+    public BookResponseDto updateBook(Long id, BookRequestDto dto) {
+        Book existing = repo.findById(id)
+                .orElseThrow(() -> new BookNotFoundException("Book not found with id " + id));
+
+        existing.setTitle(dto.title());
+        existing.setAuthor(dto.author());
+        existing.setIsbn(dto.isbn());
+        existing.setPublishedDate(dto.publishedDate());
+
+        Book updated = repo.save(existing);
+        return BookMapper.toDto(updated);
+    }
+
+    public void deleteBook(Long id) {
+        Book existing = repo.findById(id)
+                .orElseThrow(() -> new BookNotFoundException("Book not found with id " + id));
+        repo.delete(existing);
+    }
+
     public BookPageResponse getAllBooks(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Book> result = repo.findAll(pageable);
 
+        List<BookResponseDto> books = result.getContent()
+                .stream()
+                .map(BookMapper::toDto)
+                .toList();
+
         return new BookPageResponse(
-                result.getContent(),
+                books,
                 result.getNumber(),
                 result.getTotalPages(),
                 result.getTotalElements()
         );
-    }
-
-    public Optional<Book> getBookById(Long id) {
-        return repo.findById(id);
-    }
-
-    public Book createBook(Book book) {
-        return repo.save(book);
-    }
-
-    public Optional<Book> updateBook(Long id, Book updatedBook) {
-        return repo.findById(id).map(existing -> {
-            existing.setTitle(updatedBook.getTitle());
-            existing.setAuthor(updatedBook.getAuthor());
-            existing.setIsbn(updatedBook.getIsbn());
-            existing.setPublishedDate(updatedBook.getPublishedDate());
-            return repo.save(existing);
-        });
-    }
-
-    public boolean deleteBook(Long id) {
-        if (!repo.existsById(id)) return false;
-        repo.deleteById(id);
-        return true;
     }
 }
