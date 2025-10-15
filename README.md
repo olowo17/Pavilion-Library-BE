@@ -42,7 +42,7 @@ The app will start at http://localhost:8080/api/books
 
 
 
-## Access to DB
+### 2. Access to DB
 
 H2 is used as an in-memory database. To access the console:
 
@@ -59,7 +59,7 @@ Password: (leave blank)
 
 Click Connect to view and query the database.
 
-## 🧾 API Endpoints
+### 3. 🧾 API Endpoints
 
 | Method | Endpoint | Description |
 |--------|-----------|-------------|
@@ -72,7 +72,7 @@ Click Connect to view and query the database.
 ---
 
 
-## 🧠 Example JSON Request
+### 4. 🧠 Example JSON Request
 
 ```json
 {
@@ -82,6 +82,6 @@ Click Connect to view and query the database.
   "publishedDate": "2012-02-14"
 }
 
-# Postman collection
+### 5. Postman collection
 https://documenter.getpostman.com/view/33523574/2sB3QNonso
 
