@@ -2,7 +2,7 @@
 
 Backend repository for the **Library Management System** — built with **Spring Boot**, **Spring Data JPA**, and **RESTful APIs**.  
 This service provides endpoints for managing books, including adding, updating, deleting, and listing them.  
-It is designed to integrate seamlessly with the JavaFX frontend (`LibraryManagement-FE`).
+It is designed to integrate seamlessly with the JavaFX frontend (`Pavilion-Frontend-FE`).
 
 ---
 
@@ -17,29 +17,15 @@ It is designed to integrate seamlessly with the JavaFX frontend (`LibraryManagem
 - **Maven**
 
 ---
-
-## ✨ Features
-✅ RESTful CRUD operations for books  
-✅ JSON serialization/deserialization with Java 8+ `LocalDate` support  
-✅ Exception handling for invalid requests  
-✅ Lightweight and easy to integrate with any frontend (JavaFX, React, etc.)  
-✅ In-memory H2 database   
-
+## Getting Started
+```
+git clone https://github.com/olowo17/Pavilion-Library-BE.git
+cd Pavilion-Library-BE
+mvn spring-boot:run
+The app will start at http://localhost:8080/api/books
+```
 ---
-
-## 🧾 API Endpoints
-
-| Method | Endpoint | Description |
-|--------|-----------|-------------|
-| `GET`  | `/api/books` | Retrieve all books |
-| `GET`  | `/api/books/{id}` | Retrieve a specific book by ID |
-| `POST` | `/api/books` | Add a new book |
-| `PUT`  | `/api/books/{id}` | Update an existing book |
-| `DELETE` | `/api/books/{id}` | Delete a book by ID |
-
----
-
-## 🧠 Example JSON Request
+##  Sample JSON Request
 
 ```json
 {
@@ -49,4 +35,6 @@ It is designed to integrate seamlessly with the JavaFX frontend (`LibraryManagem
   "publishedDate": "2012-02-14"
 }
 
-
+```
+## Postman Collection Link
+https://documenter.getpostman.com/view/33523574/2sB3QNonso
