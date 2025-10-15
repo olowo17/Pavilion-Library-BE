@@ -82,4 +82,6 @@ Click Connect to view and query the database.
   "publishedDate": "2012-02-14"
 }
 
+# Postman collection
+https://documenter.getpostman.com/view/33523574/2sB3QNonso
 
